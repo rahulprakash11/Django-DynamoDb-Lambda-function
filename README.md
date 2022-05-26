@@ -1,0 +1,1 @@
+# Django-DynamoDb-Lambda-function
