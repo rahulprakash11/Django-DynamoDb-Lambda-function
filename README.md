@@ -6,21 +6,22 @@ We use pynamodb, for its ORM, to write models and interface to Dynamodb database
 
 - **[Installation Instructions](#installation-instructions)**<br>
 - **[Usage Instructions](#usage-instructions)**<br>
-- **[Setup Django RESTapi project](#Setup-Django-RESTapi-project)**<br>
+- **[Setup Django RESTapi project](#setup-django-restapi-project)**<br>
    - **[Folder Structure](#folder-structure)**<br>
 - **[Setup Multiple Environments](#setup-multiple-environments)**<br>
 - **[Setup Dynamodb](#setup-dynamodb)**<br>
   - **[Setup for Local machine](#setup-for-local-machine)**<br>
   - **[Setup for Dynamodb web service](#setup-for-dynamodb-web-service)**<br>
-  - **[Using Pynamodb](#using-pynamodbhttpspynamodbreadthedocsioenlatestindexhtml)**<br>
+  - **[Using Pynamodb](#using-pynamod)**<br>
 - **[Deploying on Lambda-function](#deploying-on-lambda-function)**<br>
-- 
-**[Next Steps, Credits, Feedback, License](#next-steps)**<br>
+  - **[Setup AWS resources](#setup-aws-resources)**
+  - **[Zappa Deployment](#zappa-deployment)**
+- **[Next Steps, Credits, Feedback, License](#next-steps)**<br>
 
+<br>
 
+# Installation Instructions #
 
-## Installation Instructions ##
----
 First of all, install and create virtual environment:
 
 ` python -m venv .venv`
@@ -37,11 +38,10 @@ Install required packages
 
  `(venv) > pip install -r requirements.txt`
 
-
-<br/>
+<br>
 
 # Setup Django RESTapi project #
----
+
 ## Folder Structure
 
 ```
@@ -55,31 +55,32 @@ project
 │   .env.prod
 │
 └───django_dynamodb_lambda_function/api
-│   │   __init__.py
-│   │   asgi.py
-│   │   settings.py
-|   |   urls.py
-│   |   wsgi.py
+│       __init__.py
+│       asgi.py
+│       settings.py
+|       urls.py
+│       wsgi.py
 |
 └───apps
-|   └───productionLine/     # django-app
-|   |   └───actions/      # actions on productionline items
-|   |   └───migration/
-|   │   │   __init__.py
-|   |   |   admin.py
-|   |   |   apps.py
-|   |   |   dynamodb_interface.py
-|   │   │   models.py
-|   │   │   urls.py
-|   |   |   views.py
-|   |
-|   └───products/   # django-app
-|   |
-│   └───contactUs/  # django-app
+    └───productionLine/     # django-app
+    |   └───actions/      # actions on productionline items
+    |   └───migration/
+    │       __init__.py
+    |       admin.py
+    |       apps.py
+    |       dynamodb_interface.py
+    │       models.py
+    │       urls.py
+    |       views.py
+    |
+    └───products/   # django-app
+    |
+    └───contactUs/  # django-app
 ```
+<br>
 
 # Setup Multiple Environments
----
+
 We can setup multiple environments to isolate our requirement based phases in development process. For example **development environment and production environment**. `Development environment` will involve multiple iterations of trial and error, architecture changes, code flow changes etc. This will gradually evolve into a stable code base which can be deployed on cloud. The deployment happens inside a `production environment`, which has greater security concerns and stability.
 
 In our present case as AWS provides downloadable version of dynamodb which can be used for development purposes on local machine. Which further elliminates the requirement of connecting to a cloud hosted database to test our backend bussiness logic.
@@ -90,7 +91,7 @@ We have ussed [**django-environ**](https://pypi.org/project/django-environ/) to 
 ```ps
 pip install django-environ
 ```
-<br />
+<br>
 
 Setup a separate `env.py` file, which fixes evironment variables:
 
@@ -115,7 +116,7 @@ LOGGING_HANDLERS = env.list('LOGGING_HANDLERS')
 DJANGO_LOG_LEVEL = env.str('DJANGO_LOG_LEVEL', 'INFO')
 DJANGO_LOG_FILE = env.str('DJANGO_LOG_FILE')
 ```
-Next setup your [`.env` files](F:\huha\myGit\Django-DynamoDb-Lambda-function\.env.example), with values for respective environment variables.
+Next setup your [`.env` files](.env.example), with values for respective environment variables.
 
 1. Setup your `.env.local` file(Local Environment).
 
@@ -136,10 +137,10 @@ DB_REGION=ap-south-1
 ...
 ```
 3. Similarly `.env.prod` file.
-   - Since, we are using Zappa to deploy our production ready code base, we wll fix many of the production environment variables inside the auto generated [zappa_settings.json](app/products/__init__.py)
+   - Since, we are using Zappa to deploy our production ready code base, we wll fix many of the production environment variables inside the auto generated [zappa_settings.json](#todo)
 
 
-Next import these environment variables inside django `settings.py` file.
+Next import these environment variables inside django [`settings.py`](django_dynamodb_lambda_function\settings.py) file.
 
 <br/>
 
@@ -186,7 +187,7 @@ First provide the following environment variable from console :
 > python manage.py runserver 8080
 ```
 
-or you can setup the variables to be fixed dynamically inside **Zappa settings file**.
+or you can setup the variables to be fixed dynamically inside [**Zappa settings file**](#todo).
 
 Next, run the **django local server** as done in local environment.
 
@@ -203,17 +204,19 @@ Next, run the **django local server** as done in local environment.
 
 # Deploying on Lambda-function
 
-## Cloud hosted dynamodb setup 
-
-Setup AWS account and get on with free acccess for a year
-
-Setup IAM roles, policies and permissions.
+## Setup AWS resources
+---
+Setup AWS account and confgure IAM roles, policies and permission so as to allow zappa to manage AWS resources for your API deployment.
 
 References:
 1. [How to create a serverless service in 15 minutes](https://blog.lawrencemcdaniel.com/serve-a-django-app-from-an-aws-lambda-function/)
 2. [Creating a role to delegate permissions to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)
-3. 
+
+you can check the AWS resources required for zappa deployment inside [zappa_settings_example.json](#todo) file
+<br>
+
 ## Zappa Deployment
+---
 Finally we deploy our RESTApi using Zappa. Why zappa?
 
 1. Pay per usage (link)
@@ -247,7 +250,7 @@ using aws's cloudfront services for cloud deployment
 
 <br>
 
-# Further help
+# Further Help
 
 This project is an open-source initiative by Junkie Labs team.
 
