@@ -187,7 +187,7 @@ First provide the following environment variable from console :
 > python manage.py runserver 8080
 ```
 
-or you can setup the variables to be fixed dynamically inside [**Zappa settings file**](#todo).
+or you can setup the variables to be fixed dynamically inside [**Zappa settings file**](zappa_settings_example.json).
 
 Next, run the **django local server** as done in local environment.
 
@@ -212,7 +212,7 @@ References:
 1. [How to create a serverless service in 15 minutes](https://blog.lawrencemcdaniel.com/serve-a-django-app-from-an-aws-lambda-function/)
 2. [Creating a role to delegate permissions to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)
 
-you can check the AWS resources required for zappa deployment inside [zappa_settings_example.json](#todo) file
+you can check the AWS resources required for zappa deployment inside [zappa_settings_example.json](zappa_settings_example.json) file
 <br>
 
 ## Zappa Deployment
@@ -223,7 +223,6 @@ Finally we deploy our RESTApi using Zappa. Why zappa?
 2. Round the clock availability, Zero charges for hosting.
 3. minimal initial manual setup required
 4. Built-in logging system
-5. 
 
 Setup steps:
 
@@ -240,7 +239,7 @@ To log the development/production environment:
 > zappa tail <dev/prod>
 ```
 
-zappa_settings.json
+[zappa_settings.json](zappa_settings_example.json)
 
 ## logging
 

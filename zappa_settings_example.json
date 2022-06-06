@@ -1,0 +1,17 @@
+{
+    "dev": {
+        "aws_region": "your_choice",
+        "django_settings": "django_dynamodb_lambda_function.settings",
+        "profile_name": "default",
+        "project_name": "django-dynamodb",
+        "runtime": "python3.7",
+        "s3_bucket": "custom_bucket",
+        "manage_roles": false,
+        "role_name": "customRole",
+        "role_arn": "arn:aws:iam::???:role/customRole",
+        "debug": true,
+        "environment_variables": {
+            "ENV": "dev"
+        }
+    }
+}
