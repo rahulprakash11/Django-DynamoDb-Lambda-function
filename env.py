@@ -25,6 +25,7 @@ if ENVIRONMENT == 'local':
     AWS_ACCESS_KEY_ID = env.str("AWS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET")
 
+
 elif ENVIRONMENT == 'dev':
     print("Inside dev env")
     env.read_env(str(BASE_DIR / '.env.dev'))
@@ -42,7 +43,6 @@ SECRET_KEY = env.str('SECRET_KEY')
 DEBUG = env.str('DEBUG', default=False)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 CORS_ALLOWED_URL = env.list('CORS_ALLOWED_ORIGINS')
-
 # LOGGING_LEVEL = DJANGO_LOG_LEVEL
 LOGGING_HANDLERS = env.list('LOGGING_HANDLERS')
 DJANGO_LOG_LEVEL = env.str('DJANGO_LOG_LEVEL', 'INFO')
