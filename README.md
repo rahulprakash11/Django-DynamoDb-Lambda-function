@@ -2,7 +2,7 @@
 This will be a simple Django REST API, which uses AWS Dynamodb as its schemaless database. Next we will deploy on Zappa utilising AWS's Lambda function.
 We use pynamodb, for its ORM, to write models and interface to Dynamodb database.
 
-![GitHub Repo stars](https://img.shields.io/github/stars/RahulPrakash11/Django-DynamoDb-Lambda-function?style=social)
+
 ![GitHub](https://img.shields.io/github/license/RahulPrakash11/Django-DynamoDb-Lambda-function)
 ![](https://img.shields.io/badge/Python-3.7-red)
 ![](https://img.shields.io/badge/Django-3.2-green)
