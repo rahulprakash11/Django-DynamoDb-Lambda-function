@@ -16,7 +16,9 @@ We use pynamodb, for its ORM, to write models and interface to Dynamodb database
 - **[Deploying on Lambda-function](#deploying-on-lambda-function)**<br>
   - **[Setup AWS resources](#setup-aws-resources)**
   - **[Zappa Deployment](#zappa-deployment)**
-- **[Next Steps, Credits, Feedback, License](#next-steps)**<br>
+- **[Logging](#logging)**<br>
+- **[Further Help](#further-help)**<br>
+- **[License](#license)**<br>
 
 <br>
 
@@ -187,7 +189,7 @@ First provide the following environment variable from console :
 > python manage.py runserver 8080
 ```
 
-or you can setup the variables to be fixed dynamically inside [**Zappa settings file**](#todo).
+or you can setup the variables to be fixed dynamically inside [**Zappa settings file**](zappa_settings_example.json).
 
 Next, run the **django local server** as done in local environment.
 
@@ -203,7 +205,7 @@ Next, run the **django local server** as done in local environment.
 <br />
 
 # Deploying on Lambda-function
-
+---
 ## Setup AWS resources
 ---
 Setup AWS account and confgure IAM roles, policies and permission so as to allow zappa to manage AWS resources for your API deployment.
@@ -212,18 +214,20 @@ References:
 1. [How to create a serverless service in 15 minutes](https://blog.lawrencemcdaniel.com/serve-a-django-app-from-an-aws-lambda-function/)
 2. [Creating a role to delegate permissions to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)
 
-you can check the AWS resources required for zappa deployment inside [zappa_settings_example.json](#todo) file
+you can check the AWS resources required for zappa deployment inside [zappa_settings_example.json](zappa_settings_example.json) file
+
 <br>
 
 ## Zappa Deployment
 ---
-Finally we deploy our RESTApi using Zappa. Why zappa?
+Finally we deploy our RESTApi using [Zappa](https://github.com/zappa/Zappa). Why zappa?
 
-1. Pay per usage (link)
+1. Pay per usage
 2. Round the clock availability, Zero charges for hosting.
 3. minimal initial manual setup required
 4. Built-in logging system
-5. 
+
+<br>
 
 Setup steps:
 
@@ -232,21 +236,29 @@ Setup steps:
 > zappa deploy dev # for development server
 > zappa deploy prod # for production environment
 > zappa update <dev/prod> # to update changes in your code base
-
+```
 Made mistakes and want to start over. Simply undeploy and start over
-> zappa undeploy <dev/prod>
 
-To log the development/production environment:
-> zappa tail <dev/prod>
+```
+zappa undeploy <dev/prod>
+```
+<br>
+
+# Logging
+---
+
+- For local environment:
+  Checkout [**env.py**](env.py)
+
+
+- To log the development/production environment:
+
+Run from your environment console:
+```
+zappa tail <dev/prod>
 ```
 
-zappa_settings.json
-
-## logging
-
-for local development
-
-using aws's cloudfront services for cloud deployment
+- Or, you can use AWS's [cloudfront services](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html) for cloud deployed logging.
 
 <br>
 
@@ -270,6 +282,5 @@ For any questions or suggestions send a mail to junkielabs.dev@gmail.com or chat
 
 ## TODO
 
-- add badges
-- remove aws credentialsfrom zappa settings and elsewhere
--  
+- add badge
+- test zappa
