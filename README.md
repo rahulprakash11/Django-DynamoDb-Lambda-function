@@ -1,4 +1,7 @@
 # Django-DynamoDb-Lambda-function
+
+[![Join the chat at https://gitter.im/nubar-api/django-dynamodb-lambda-function](https://badges.gitter.im/nubar-api/django-dynamodb-lambda-function.svg)](https://gitter.im/nubar-api/django-dynamodb-lambda-function?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This will be a simple Django REST API, which uses AWS Dynamodb as its schemaless database. Next we will deploy on Zappa utilising AWS's Lambda function.
 We use pynamodb, for its ORM, to write models and interface to Dynamodb database.
 
